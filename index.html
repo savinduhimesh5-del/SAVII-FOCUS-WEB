@@ -2,124 +2,471 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#05070e">
-  <meta name="description" content="SAVII FOCUS - Your Personal Intelligence Ecosystem">
-  <title>SAVII FOCUS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070812">
+<title>SAVII FOCUS</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+:root {
+  --bg: #070812;
+  --surface: #101222;
+  --surface2: #15182b;
+  --text: #f5f5ff;
+  --muted: #9295ad;
+  --accent: #9b7bff;
+  --border: rgba(255,255,255,.08);
+}
 
-    body {
-      min-height: 100vh;
-      background: #05070e;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    .container {
-      width: 100%;
-      max-width: 650px;
-      text-align: center;
-    }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, Arial, sans-serif;
+  min-height: 100vh;
+}
 
-    .logo {
-      width: 76px;
-      height: 76px;
-      margin: 0 auto 28px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, #8b5cf6, #4338ca);
-      display: grid;
-      place-items: center;
-      font-size: 30px;
-      font-weight: bold;
-      box-shadow: 0 0 45px #7c3aed40;
-    }
+button {
+  font: inherit;
+  cursor: pointer;
+}
 
-    .tag {
-      color: #a78bfa;
-      letter-spacing: 4px;
-      font-size: 11px;
-      margin-bottom: 18px;
-    }
+.app {
+  display: flex;
+  min-height: 100vh;
+}
 
-    h1 {
-      font-size: clamp(38px, 9vw, 64px);
-      letter-spacing: -2px;
-      margin-bottom: 16px;
-    }
+.sidebar {
+  width: 235px;
+  padding: 28px 18px;
+  border-right: 1px solid var(--border);
+  background: #0a0b17;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
 
-    h1 span {
-      color: #a78bfa;
-    }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  padding-left: 8px;
+}
 
-    .description {
-      color: #9296a8;
-      line-height: 1.8;
-      font-size: 15px;
-      max-width: 440px;
-      margin: 0 auto 30px;
-    }
+.brand-icon {
+  width: 39px;
+  height: 39px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 19px;
+  background: linear-gradient(135deg,#aa8aff,#5740c9);
+}
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 11px 17px;
-      border: 1px solid #ffffff18;
-      border-radius: 30px;
-      background: #ffffff08;
-      color: #c4b5fd;
-      font-size: 12px;
-    }
+.brand-name {
+  font-weight: 750;
+  letter-spacing: 1px;
+}
 
-    .dot {
-      width: 7px;
-      height: 7px;
-      background: #a78bfa;
-      border-radius: 50%;
-      box-shadow: 0 0 12px #a78bfa;
-    }
+.brand-name small {
+  display: block;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  margin-top: 3px;
+}
 
-    footer {
-      margin-top: 65px;
-      color: #55596a;
-      font-size: 11px;
-      letter-spacing: 1px;
-    }
-  </style>
+.nav-label {
+  color: #656981;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 0 12px;
+  margin-bottom: 13px;
+}
+
+.nav {
+  display: grid;
+  gap: 7px;
+}
+
+.nav button {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--muted);
+  text-align: left;
+  padding: 13px 12px;
+  border-radius: 11px;
+  font-size: 13px;
+  transition: .2s;
+}
+
+.nav button.active {
+  background: #9b7bff17;
+  border-color: #9b7bff2c;
+  color: #c8b9ff;
+}
+
+.nav button:hover {
+  background: #ffffff09;
+  color: white;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  padding: 14px 12px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 32px clamp(18px,4vw,48px);
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 48px;
+}
+
+.top-label {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.profile {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #25203d;
+  border: 1px solid #a78bfa55;
+  display: grid;
+  place-items: center;
+  color: #cbbcff;
+  font-weight: bold;
+}
+
+.heading {
+  margin-bottom: 32px;
+}
+
+.heading h1 {
+  font-size: clamp(28px,5vw,40px);
+  letter-spacing: -1.5px;
+  margin-bottom: 10px;
+}
+
+.heading h1 span {
+  color: var(--accent);
+}
+
+.heading p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.protocol {
+  background:
+    radial-gradient(ellipse at 90% 10%,#7955dc30,transparent 55%),
+    linear-gradient(120deg,#17152b,#101222);
+  border: 1px solid #a78bfa30;
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.protocol-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.protocol h2 {
+  font-size: 17px;
+  letter-spacing: .5px;
+}
+
+.protocol p {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 9px;
+  line-height: 1.6;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #c5b7ff;
+  font-size: 11px;
+  background: #9b7bff18;
+  padding: 9px 13px;
+  border-radius: 30px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 15px;
+  margin-bottom: 27px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 21px;
+  min-height: 145px;
+}
+
+.card-icon {
+  font-size: 19px;
+  margin-bottom: 19px;
+}
+
+.card h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.section-title {
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 16px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 22px;
+  min-height: 170px;
+}
+
+.panel p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+  margin-top: 12px;
+}
+
+.empty {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px dashed #ffffff20;
+  border-radius: 12px;
+  color: #888ba2;
+  font-size: 12px;
+  text-align: center;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+@media(max-width:800px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    padding: 23px 17px 100px;
+  }
+
+  .topbar {
+    margin-bottom: 35px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .card {
+    min-height: 115px;
+  }
+
+  .card-icon {
+    margin-bottom: 12px;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    gap: 3px;
+    padding: 11px 5px calc(11px + env(safe-area-inset-bottom));
+    background: #0c0d19f5;
+    border-top: 1px solid var(--border);
+    z-index: 10;
+  }
+
+  .mobile-nav button {
+    background: transparent;
+    border: 0;
+    color: var(--muted);
+    font-size: 10px;
+    padding: 7px 5px;
+    border-radius: 9px;
+  }
+
+  .mobile-nav button.active {
+    color: #c5b7ff;
+    background: #9b7bff18;
+  }
+}
+</style>
 </head>
 
 <body>
-  <main class="container">
-    <div class="logo">S</div>
+<div class="app">
 
-    <p class="tag">PERSONAL INTELLIGENCE ECOSYSTEM</p>
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-icon">S</div>
+    <div class="brand-name">
+      SAVII FOCUS
+      <small>INTELLIGENCE SYSTEM</small>
+    </div>
+  </div>
 
-    <h1>SAVII <span>FOCUS</span></h1>
+  <div class="nav-label">WORKSPACE</div>
 
-    <p class="description">
-      One intelligent ecosystem to organize your life,
+  <nav class="nav">
+    <button class="active">◈ &nbsp; Overview</button>
+    <button>✧ &nbsp; AI Intelligence</button>
+    <button>▤ &nbsp; Learning</button>
+    <button>▦ &nbsp; Planner</button>
+    <button>◉ &nbsp; Focus</button>
+    <button>⌁ &nbsp; Insights</button>
+    <button>⚙ &nbsp; Settings</button>
+  </nav>
+
+  <div class="sidebar-bottom">
+    YOUR INTELLIGENCE.<br>
+    YOUR CONTROL.<br><br>
+    SAVII FOCUS © 2026
+  </div>
+</aside>
+
+<main class="main">
+
+  <header class="topbar">
+    <div class="top-label">PERSONAL INTELLIGENCE ECOSYSTEM</div>
+    <div class="profile">S</div>
+  </header>
+
+  <section class="heading">
+    <h1>Your life. <span>In focus.</span></h1>
+    <p>
+      One intelligent space to organize your life,
       improve your learning and understand your progress.
     </p>
+  </section>
 
-    <div class="status">
-      <span class="dot"></span>
-      SYSTEM INITIALIZING
+  <section class="protocol">
+    <div class="protocol-top">
+      <div>
+        <h2>SAVII FOCUS PROTOCOL</h2>
+        <p>Your personal focus environment is currently inactive.</p>
+      </div>
+      <div class="status">
+        <span class="dot"></span>
+        SYSTEM READY
+      </div>
     </div>
+  </section>
 
-    <footer>
-      SAVII FOCUS · YOUR INTELLIGENCE, YOUR CONTROL
-    </footer>
-  </main>
+  <h2 class="section-title">Your Workspace</h2>
+
+  <section class="cards">
+    <article class="card">
+      <div class="card-icon">✧</div>
+      <h3>AI Intelligence</h3>
+      <p>Your personal intelligence and recommendations.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-icon">▤</div>
+      <h3>Learning</h3>
+      <p>Track subjects, topics and learning progress.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-icon">▦</div>
+      <h3>Planner</h3>
+      <p>Organize tasks, schedules and upcoming goals.</p>
+    </article>
+  </section>
+
+  <h2 class="section-title">Personal Overview</h2>
+
+  <section class="workspace">
+    <article class="panel">
+      <h3>Today's Activity</h3>
+      <p>Your daily progress will appear here as you use SAVII FOCUS.</p>
+      <div class="empty">No activity data yet</div>
+    </article>
+
+    <article class="panel">
+      <h3>Learning Progress</h3>
+      <p>Your learning progress and achievements will appear here.</p>
+      <div class="empty">No learning data yet</div>
+    </article>
+  </section>
+
+</main>
+</div>
+
+<nav class="mobile-nav">
+  <button class="active">◈<br>Home</button>
+  <button>✧<br>AI</button>
+  <button>▤<br>Learn</button>
+  <button>▦<br>Plan</button>
+  <button>◉<br>Focus</button>
+</nav>
+
 </body>
 </html>
